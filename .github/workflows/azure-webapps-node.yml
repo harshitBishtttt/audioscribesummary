@@ -20,7 +20,7 @@ jobs:
       - id: secrets
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
-          secret-id: my-app-secrets
+          secret-ids: my-app-secrets
           parse-json-secrets: true
 
       # Removed npm run build since backend doesn't need it
