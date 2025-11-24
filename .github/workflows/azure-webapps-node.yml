@@ -23,10 +23,7 @@ jobs:
           secret-id: my-app-secrets
           parse-json-secrets: true
 
-      - run: npm run build
-        env:
-          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
-          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+      # Removed npm run build since backend doesn't need it
 
       - uses: azure/webapps-deploy@v2
         with:
