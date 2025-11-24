@@ -25,8 +25,8 @@ jobs:
 
       - run: npm run build
         env:
-          AZURE_OPENAI_ENDPOINT: ${{ steps.secrets.outputs.AZURE_OPENAI_ENDPOINT }}
-          AZURE_OPENAI_API_KEY: ${{ steps.secrets.outputs.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
 
       - uses: azure/webapps-deploy@v2
         with:
