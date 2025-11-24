@@ -1,12 +1,15 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
-// Import your controller
-const textExtractionRoutes = require("./controller/summaryController");
+app.use(cors());
 
-// Use the routes
+const textExtractionRoutes = require("./controller/summaryController");
 app.use("/api/v1/summary/", textExtractionRoutes);
 
-app.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+// Use Azure's assigned port or fallback to 5000 locally
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
