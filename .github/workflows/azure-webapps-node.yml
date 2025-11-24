@@ -17,15 +17,14 @@ jobs:
 
       - run: npm install
 
-      - id: secrets
-        uses: aws-actions/aws-secretsmanager-get-secrets@v1
-        with:
-          secret-ids: my-app-secrets
-          parse-json-secrets: true
+      # Removed AWS Secrets Manager step since secrets are in GitHub
 
-      # Removed npm run build since backend doesn't need it
-
-      - uses: azure/webapps-deploy@v2
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v2
         with:
           app-name: audioscribesummary
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .
+        env:
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
